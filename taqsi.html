@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taqsi</title>
+    <!-- google fonts-->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300&display=swap" rel="stylesheet">
+    <!--font awesome all css min file-->
+    <link rel="stylesheet" href="css/all.min.css"/>
+    <!-- Normalize CSS file -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <!--  Main CSS file -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- ArcGIS API for JS  -->
+    <link rel="stylesheet" href="https://js.arcgis.com/4.26/esri/themes/light/main.css" />
+    <script src="https://js.arcgis.com/4.26/"></script>
+
+</head>
+<body>
+    <div class="mapy">
+        <!-- start mapy -->
+        <!-- side part -->
+        <div class="side">
+            <div class="container">
+                <div class="side-title">
+                   <a href="#">
+                    <span>Taqsi</span>
+                   </a>
+                </div>
+                <!-- search by lat long -->
+                <div class="search-location">
+                    <h2>Search Location by Lat, Long</h2>
+                    <div class="lat">
+                        <label for="latInput">Lat : </label>
+                        <input class="lat" type="text" id="latInput" placeholder="Latitude">
+                    </div>
+                    <div class="long">
+                        <label for="longInput">Long : </label>
+                        <input class="long" type="text" id="longInput" placeholder="Longitude">
+                    </div>
+                    <div class="search-footer">
+                        <button class="search-btn">Search</button>
+                    </div>
+                </div>
+                 <!-- search by area name -->
+                <div class="weather" >
+                    <div class="weat-header">
+                        <h3>Explore Weather Data by Area Name</h3>
+                        <label for="locationInput">address : </label>
+                        <input class="location-inpu" type="text" id="locationInput" placeholder="Enter area name">
+                    </div>
+                    <div class="weat-btn">
+                        <button class="weather-btn"  id="open-modal" onclick="getWeather()">Get Weather</button>
+                    </div>                  
+                </div>
+                <!-- side footer -->
+                <div class="side-footer">
+                    <div class="span1">
+                        <span class="footer-span-one">
+                          &copy 2023 
+                          <span class="special">Taqsi</span>
+                          <br>
+                            By : Mohamed Helal | GIS Developer
+                        </span>
+                    </div>
+                    <div class="span2">
+                        <span class="footer-span-two">
+                            Contact me 
+                            <a href="https://www.linkedin.com/in/mohamed-a-helal-/" target="_blank">
+                                <i class="fa-brands fa-linkedin"></i>
+                            </a>
+                            <a href="mailto:moahamed.a.helal@gmail.com?subject=contact" class="link" style="text-decoration: none;" >
+                                <i class="fa-solid fa-envelope" ></i>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- map part -->
+        <div class="map-view">
+            <div class="container">
+                <div class="map" id="viewDiv" >
+    
+                    <button class="map-home" title="home map view">
+                        <i class="fa-solid fa-house"></i>
+                    </button>
+  
+                </div>
+            </div>
+        </div>
+        <!-- weather data modal -->
+        <div class="weather-modal-overlay" id="modal-overlay">
+            <div class="weather-modal" id="modal">
+              <div class="modal-header">
+                <h2>Weather Data</h2>
+              </div>
+          
+              <div class="modal-content">
+                <div class="weatData-content" id="weatherInfo">
+                    <!-- temp -->
+                    <div class="info">
+                        <p class="Temperature wea-icon" type="text" id="Temperature-data" ></p>
+                        <div class="data-icon">
+                            <img src="img/temp.png" alt="">
+                        </div>
+                    </div>
+                    <!-- MinMax -->
+                    <div class="info">
+                        <p class="MinMax wea-icon" type="text" id="MinMax-data" ></p>
+                        <div class="data-icon">
+                            <img src="img/heat-and-cool-.png" alt="">
+                        </div>
+                    </div>
+                    <!-- Wind-Speed -->
+                    <div class="info">
+                        <p class="Wind-Speed wea-icon" type="text" id="WindSpeed-data" ></p>
+                        <div class="data-icon">
+                            <img src="img/wind.png" alt="">
+                        </div>
+                    </div>
+                    <!-- Wind-DD -->
+                    <div class="info">
+                        <p class="Wind-DD wea-icon" type="text" id="Wind-DD-data" ></p>
+                        <div class="data-icon">
+                            <img src="img/wind-dd.png" alt="">
+                        </div>
+                    </div>
+                    <!-- Clouds -->
+                    <div class="info">
+                        <p class="Clouds wea-icon" type="text" id="Clouds-data"></p>
+                        <div class="data-icon">
+                            <img src="img/cloud.png" alt="">
+                        </div>
+                    </div>
+                    <!-- Pressure -->
+                    <div class="info">
+                        <p class="Pressure wea-icon" type="text" id="Pressure-data" ></p>
+                        <div class="data-icon">
+                            <img src="img/pressure.png" alt="">
+                        </div>
+                    </div>
+                    <!-- Humidity -->
+                    <div class="info">
+                        <p class="Humidity wea-icon" type="text" id="Humidity-data" ></p>
+                        <div class="data-icon">
+                            <img src="img/humidity.png" alt="">
+                        </div>
+                    </div>
+                    <!-- Weather Desc -->
+                    <div class="info">
+                        <p class="Weather wea-icon" type="text" id="Weather-data" > </p>
+                        <div class="data-icon">
+                            <img src="img/weather.png" alt="">
+                        </div>
+                    </div>
+                    <!-- Country -->
+                    <div class="info">
+                        <p class="country wea-icon" type="text" id="country-data" ></p>
+                        <div class="data-icon">
+                            <img src="img/world.png" alt="">
+                        </div>
+                    </div>
+                    
+                </div>
+              </div>
+          
+              <div class="modal-footer">
+                <button class="close-btn" id="close-modal">Close</button>
+              </div>
+          
+            </div>
+        </div>
+        <!-- End mapy -->
+    </div>
+
+    <!-- main js file -->
+    <script src="js/main.js"></script>
+</body>
+</html> 
