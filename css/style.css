@@ -22,7 +22,7 @@ a {
 }
 /* end global */
 /* start side */
-.mapy {
+.taqsi {
     display: flex;
 }
 .side {
@@ -30,6 +30,7 @@ a {
     background-color: #333333;
     color: #bdb0b0;
     text-align: center;
+    width: 20%;
 }
 .side .side-title {
     margin: 20px 0;
@@ -291,6 +292,46 @@ a {
         padding: 5px;
         font-size: 13px;
     }
+    .esri-popup__header .esri-popup__header-container .esri-widget__heading{
+        font-size: 10px !important;
+        position: relative;
+    }
+    .esri-popup__header .esri-popup__header-container .esri-widget__heading::after {
+        content: "click to get weather data";
+        position: absolute;
+        bottom: -18px;
+        background-color: #19bb9c;
+        outline: none;
+        border: 1px solid #19bb9c;
+        color: white;
+        border-radius: 0px;
+        cursor: pointer;
+        font-size: 11px;
+        padding: 2px;
+    }
+    .esri-popup__content  {
+        display: flex !important;
+        flex-flow: column nowrap !important;
+        flex: 1 1 auto !important;
+        font-size: 10px !important;
+        margin: 0 6px !important;
+        overflow: auto !important;
+        line-height: normal !important;
+    }
+    .esri-popup__content div.esri-feature__content-node  {
+        font-size: 10px !important;
+        height: 105px !important;
+    }
+    .esri-popup__header-container--button {
+        padding-bottom: 15px !important;
+    }
+    .esri-popup__main-container {
+        top: 50%;
+        font-size: 11px;
+        left: 50%;
+        height: fit-content;
+        overflow: scroll;
+    }
 }
 /* end side */
 /* start map */
@@ -336,4 +377,5 @@ a {
 .esri-menu {
     font-size: 13px !important;
 }
+
 /* end map */
